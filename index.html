@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магазин Зброї</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Магазин Зброї</h1>
+    <div id="cart-container">
+      <span>Кошик: <span id="cart-count">0</span> товарів</span>
+      <button id="cart">Перейти в кошик</button>
+    </div>
+  </header>
+
+  <!-- Кнопки для категорій -->
+  <div id="categories">
+    <button class="category-button" onclick="showCategory('pistols')">Пістолети</button>
+    <button class="category-button" onclick="showCategory('submachineGuns')">Пістолети-пулемети</button>
+    <button class="category-button" onclick="showCategory('rifles')">Штурмові гвинтівки</button>
+    <button class="category-button" onclick="showCategory('shotguns')">Дробовики</button>
+  </div>
+
+  <!-- Контейнери для категорій зброї -->
+  <div id="pistols" class="weapon-category"></div>
+  <div id="submachineGuns" class="weapon-category"></div>
+  <div id="rifles" class="weapon-category"></div>
+  <div id="shotguns" class="weapon-category"></div>
+
+  <!-- Модальне вікно -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="Weapon Image" />
+      <h2 id="modal-name"></h2>
+      <p id="modal-description"></p>
+      <p id="modal-price"></p>
+      <button id="add-to-cart">Додати в кошик</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
