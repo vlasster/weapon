@@ -1,114 +1,73 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  #categories {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .category-button {
-    margin: 0 15px;
-    padding: 15px 30px;
-    background-color: #000;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .category-button:hover {
-    background-color: #555;
-  }
-  
-  .weapon-category {
-    display: none;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .weapon-card {
-    width: 250px;
-    padding: 15px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-  }
-  
-  .weapon-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .weapon-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  
-  #modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 30px;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  #add-to-cart {
-    background-color: #28a745;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-  }
-  
-  #add-to-cart:hover {
-    background-color: #218838;
-  }
-  
+/* --- Анімації для карток зброї --- */
+.weapon-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.weapon-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.weapon-card img {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.weapon-card h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.weapon-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* --- Анімація для модального вікна --- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  animation: slideIn 0.5s;
+}
+
+.modal img {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.modal h2, .modal p {
+  margin: 10px 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
