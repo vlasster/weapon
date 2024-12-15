@@ -1,67 +1,36 @@
 let cartCount = 0;
+let cartItems = [];
 
-// Дані про зброю
 const weapons = {
   pistols: [
-    {
-      id: 'pistol1',
-      name: 'Glock 19',
-      description: 'Популярний 9мм пістолет, відомий своєю надійністю.',
-      price: 550,
-      img: 'images/glock19.jpg'
-    },
-    {
-      id: 'pistol2',
-      name: 'Smith & Wesson M&P 9',
-      description: 'Пістолет для самооборони та спортивної стрільби.',
-      price: 600,
-      img: 'images/smith_wesson.jpg'
-    },
-    {
-      id: 'pistol3',
-      name: 'Sig Sauer P320',
-      description: 'Модульний пістолет, що легко налаштовується.',
-      price: 650,
-      img: 'images/sig_sauer.jpg'
-    }
+    { id: 'pistol1', name: 'Glock 19', description: 'Надійний пістолет з відмінною точністю та 15-зарядним магазином.', price: 550, img: 'images/glock19.jpg' },
+    { id: 'pistol2', name: 'Beretta 92FS', description: 'Легендарний італійський пістолет з міцною конструкцією.', price: 580, img: 'images/beretta92.jpg' },
+    { id: 'pistol3', name: 'Desert Eagle', description: 'Потужний пістолет калібру .50 AE, який забезпечує величезну вогневу міць.', price: 1200, img: 'images/desert_eagle.jpg' }
   ],
   submachineGuns: [
-    {
-      id: 'submachineGun1',
-      name: 'Heckler & Koch MP5',
-      description: 'Впізнаваний пістолет-пулемет, який використовують спецпідрозділи.',
-      price: 2500,
-      img: 'images/mp5.jpg'
-    },
-        
+    { id: 'submachineGun1', name: 'Heckler & Koch MP5', description: 'Класичний пістолет-пулемет з високою точністю.', price: 2500, img: 'images/mp5.jpg' },
+    { id: 'submachineGun2', name: 'Uzi Pro', description: 'Компактний та ефективний ізраїльський пістолет-пулемет.', price: 2200, img: 'images/uzi.jpg' }
   ],
   rifles: [
-    {
-      id: 'rifle1',
-      name: 'AR-15',
-      description: 'Популярний автомат для спорту та самооборони.',
-      price: 900,
-      img: 'images/ar15.jpg'
-    },
-    // Інші елементи категорії...
+    { id: 'rifle1', name: 'AK-47', description: 'Легендарна штурмова гвинтівка з відмінною надійністю.', price: 950, img: 'images/ak47.jpg' },
+    { id: 'rifle2', name: 'M16A4', description: 'Сучасна гвинтівка з оптикою для точної стрільби.', price: 1100, img: 'images/m16.jpg' },
+    { id: 'rifle3', name: 'SCAR-H', description: 'Високотехнологічна гвинтівка з покращеною точністю.', price: 1800, img: 'images/scar_h.jpg' }
   ],
   shotguns: [
-    {
-      id: 'shotgun1',
-      name: 'Remington 870',
-      description: 'Надійний дробовик для полювання та самооборони.',
-      price: 450,
-      img: 'images/remington870.jpg'
-    },
-    // Інші елементи категорії...
+    { id: 'shotgun1', name: 'Remington 870', description: 'Надійний і потужний дробовик для полювання.', price: 450, img: 'images/remington870.jpg' },
+    { id: 'shotgun2', name: 'Mossberg 500', description: 'Дробовик для самозахисту з плавним перезарядженням.', price: 500, img: 'images/mossberg500.jpg' }
   ]
 };
 
-// Відкрити модальне вікно
+function addToCart(weapon) {
+  cartItems.push(weapon);
+  cartCount++;
+  document.getElementById('cart-count').innerText = cartCount;
+  alert(`${weapon.name} додано до кошика!`);
+}
+
 function openModal(weaponId) {
   let selectedWeapon = null;
-
-  // Шукаємо зброю за ID у всіх категоріях
   for (const category of Object.values(weapons)) {
     selectedWeapon = category.find(item => item.id === weaponId);
     if (selectedWeapon) break;
@@ -75,53 +44,34 @@ function openModal(weaponId) {
     document.getElementById('modal').style.display = 'flex';
 
     document.getElementById('add-to-cart').onclick = function () {
-      cartCount++;
-      document.getElementById('cart-count').innerText = cartCount;
+      addToCart(selectedWeapon);
       closeModal();
     };
-  } else {
-    console.error(`Weapon with ID ${weaponId} not found.`);
   }
 }
 
-// Закрити модальне вікно
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-// Відобразити категорію
 function showCategory(category) {
-  const allCategories = document.querySelectorAll('.weapon-category');
-  allCategories.forEach(cat => cat.style.display = 'none');
-
-  const categoryElement = document.getElementById(category);
-  if (categoryElement) {
-    categoryElement.style.display = 'flex';
-  } else {
-    console.error(`Category ${category} not found.`);
-  }
+  document.querySelectorAll('.weapon-category').forEach(cat => cat.style.display = 'none');
+  document.getElementById(category).style.display = 'flex';
 }
 
-// Додаємо картки зброї до категорій
 window.onload = () => {
   for (const [categoryName, weaponsList] of Object.entries(weapons)) {
     const categorySection = document.getElementById(categoryName);
-
-    if (categorySection) {
-      weaponsList.forEach(weapon => {
-        const weaponCard = document.createElement('div');
-        weaponCard.classList.add('weapon-card');
-        weaponCard.setAttribute('onclick', `openModal('${weapon.id}')`);
-
-        weaponCard.innerHTML = `
-          <img src="${weapon.img}" alt="${weapon.name}" />
-          <h3>${weapon.name}</h3>
-          <p>Ціна: $${weapon.price}</p>
-        `;
-        categorySection.appendChild(weaponCard);
-      });
-    } else {
-      console.error(`Category section with ID ${categoryName} not found.`);
-    }
+    weaponsList.forEach(weapon => {
+      const weaponCard = document.createElement('div');
+      weaponCard.classList.add('weapon-card');
+      weaponCard.setAttribute('onclick', `openModal('${weapon.id}')`);
+      weaponCard.innerHTML = `
+        <img src="${weapon.img}" alt="${weapon.name}" />
+        <h3>${weapon.name}</h3>
+        <p>Ціна: $${weapon.price}</p>
+      `;
+      categorySection.appendChild(weaponCard);
+    });
   }
 };
