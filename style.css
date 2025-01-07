@@ -1,17 +1,89 @@
-/* --- Анімації для карток зброї --- */
-.weapon-card {
-  border: 1px solid #ccc;
+/* Основні стилі для сторінки */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #000;
+  color: #fff;
   padding: 10px;
+  text-align: center;
+}
+
+#categories {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.category-button {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.category-button:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+.weapon-category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.blog-category {
+  padding: 20px;
+}
+
+.blog-spacing {
+  margin-top: 30px; /* Відступ перед розділом блогу */
+}
+
+.blog-post {
+  background-color: #222;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog-post:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.blog-post h3 {
+  margin-top: 0;
+}
+
+.weapon-card {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 8px;
-  background-color: #fff;
 }
 
 .weapon-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
 }
 
 .weapon-card img {
@@ -30,27 +102,14 @@
   color: #555;
 }
 
-/* --- Анімація для модального вікна --- */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.5s;
-}
-
+/* Стилі для модального вікна та кошика */
 .modal-content {
-  background: #fff;
-  padding: 20px;
+  background: #000;
+  color: #fff;
   border-radius: 10px;
   text-align: center;
   max-width: 400px;
-  animation: slideIn 0.5s;
+  padding: 20px;
 }
 
 .modal img {
@@ -58,16 +117,224 @@
   margin-bottom: 10px;
 }
 
-.modal h2, .modal p {
-  margin: 10px 0;
+.close {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.close:hover {
+  color: #ccc;
 }
 
-@keyframes slideIn {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* Стилі для кошика */
+#cart-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }
+
+#cart {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#cart:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}
+
+/* Стилі для товарів у кошику */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+  margin-bottom: 10px;
+}
+
+.cart-item-details {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cart-item-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.remove-item {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.remove-item:hover {
+  background-color: #ff0000;
+  transform: scale(1.1);
+}
+
+/* Стилі для форми оплати */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.payment-form input {
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #222;
+  color: white;
+}
+
+.card-details {
+  display: flex;
+  gap: 10px;
+}
+
+.card-details input {
+  width: 50%;
+}
+
+.payment-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.payment-form button:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+}
+
+.cart-item-details {
+  background-attachment: fixed;
+}
+
+.checkout {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.checkout:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.1);
+}
+.modal-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.modal {
+  min-width: 300px; /* Ширина кожного модального вікна */
+  margin: 10px; /* Відступ між модальними вікнами */
+}
+.payment-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.payment-form button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.payment-form .close {
+  color: #fff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.payment-form .close:hover {
+  color: #ccc;
+}
+/* Стиль для кнопки Додати до кошика */
+.modal-content button {
+  background-color: #4CAF50; /* Зелений колір */
+  color: white;
+  padding: 12px 20px; /* Внутрішні відступи */
+  border: none;
+  border-radius: 5px; /* Закруглені кути */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #45a049; /* Світліший зелений при наведенні */
+  transform: scale(1.05); /* Збільшення розміру */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Тінь */
+}
+
+.modal-content button:active {
+  background-color: #3e8e41; /* Темніший зелений при натисканні */
+  transform: scale(1); /* Зменшення масштабу при натисканні */
+}
+.remove-item {
+  background-color: #ff4444; /* Червоний колір */
+  color: white;
+  border: none;
+  padding: 5px 10px; /* Внутрішні відступи */
+  border-radius: 3px; /* Закруглені кути */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.remove-item:hover {
+  background-color: #ff0000; 
+  transform: scale(1.05); /* Збільшення розміру */
+  box-shadow: 0 8px 15px rgba(255, 0, 0, 0.2); /* Тінь */
+}
+
+.remove-item:active {
+  background-color: #cc0000; 
+  transform: scale(1); 
+}
+
