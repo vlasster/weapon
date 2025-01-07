@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Магазин Зброї</title>
+  <title>Магазин Зброї в США</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Магазин Зброї</h1>
+    <h1>Магазин Зброї в США</h1>
     <div id="cart-container">
       <span>Кошик: <span id="cart-count">0</span> товарів</span>
-      <button id="cart">Перейти в кошик</button>
+      <button id="cart" onclick="openCartModal()">Перейти в кошик</button>
     </div>
   </header>
 
@@ -21,6 +21,8 @@
     <button class="category-button" onclick="showCategory('submachineGuns')">Пістолети-пулемети</button>
     <button class="category-button" onclick="showCategory('rifles')">Штурмові гвинтівки</button>
     <button class="category-button" onclick="showCategory('shotguns')">Дробовики</button>
+    <button class="category-button" onclick="showCategory('coldWeapons')">Холодна зброя</button>
+    <button class="category-button" onclick="showCategory('blog')">Блог</button>
   </div>
 
   <!-- Контейнери для категорій зброї -->
@@ -28,29 +30,35 @@
   <div id="submachineGuns" class="weapon-category"></div>
   <div id="rifles" class="weapon-category"></div>
   <div id="shotguns" class="weapon-category"></div>
+  <div id="coldWeapons" class="weapon-category"></div>
 
-  <!-- Модальне вікно товару -->
-  <div id="modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modal-img" src="" alt="Weapon Image" />
-      <h2 id="modal-name"></h2>
-      <p id="modal-description"></p>
-      <p id="modal-price"></p>
-      <button id="add-to-cart">Додати в кошик</button>
+  <!-- Контейнер для блогу -->
+  <div id="blog" class="blog-category" style="display:none;">
+    <h2>Новини та Блог</h2>
+    <div class="blog-spacing">
+      <div id="blog-posts">
+        <!-- Приклади новинних статей -->
+        <div class="blog-post">
+          <h3>Нові моделі зброї на ринку у 2025 році</h3>
+          <p>У 2025 році ми побачимо багато нових моделей зброї від провідних виробників. Зокрема, компанія Heckler & Koch випустила нову гвинтівку...</p>
+          <a href="#">Читати більше</a>
+        </div>
+        <div class="blog-post">
+          <h3>Технологічні інновації в індустрії зброї</h3>
+          <p>Індустрія зброї не стоїть на місці, і щороку ми бачимо нові технологічні досягнення. Наприклад, використання нових матеріалів для зменшення ваги...</p>
+          <a href="#">Читати більше</a>
+        </div>
+        <div class="blog-post">
+          <h3>Історія розвитку пістолетів</h3>
+          <p>Пістолети пройшли довгий шлях від старих моделей до сучасних високоточних зразків. У цій статті ми розглянемо основні етапи розвитку...</p>
+          <a href="#">Читати більше</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Модальне вікно для кошика -->
-  <div id="cart-modal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close" onclick="closeCartModal()">&times;</span>
-      <h2>Ваш кошик</h2>
-      <div id="cart-items"></div>
-      <p id="total-price">Загальна сума: $0</p>
-      <button id="checkout">Оплатити</button>
-    </div>
-  </div>
+  <!-- Контейнер для модальних вікон -->
+  <div class="modal-container"></div>
 
   <script src="script.js"></script>
 </body>
